@@ -2,20 +2,22 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
+SHELL = cmd.exe
+
 # Add inputs and outputs from these tool invocations to the build variables 
 CMD_SRCS += \
 ../mspm0g3507.cmd 
 
 C_SRCS += \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/ADC.c \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/Clock.c \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/I2C.c \
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/ADC.c \
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/Clock.c \
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/I2C.c \
 ../Lab2main.c \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/LaunchPad.c \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/SSD1306.c \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/Timer.c \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/UART.c \
-/Users/harishthehershey/Desktop/HW/ECE\ 445L\ -\ TA/ValvanoWareMSPM0_v1/inc/UARTbusywait.c 
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/LaunchPad.c \
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/SSD1306.c \
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/Timer.c \
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/UART.c \
+C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/UARTbusywait.c 
 
 C_DEPS += \
 ./ADC.d \
@@ -62,14 +64,14 @@ C_DEPS__QUOTED += \
 "UARTbusywait.d" 
 
 C_SRCS__QUOTED += \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/ADC.c" \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/Clock.c" \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/I2C.c" \
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/ADC.c" \
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/Clock.c" \
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/I2C.c" \
 "../Lab2main.c" \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/LaunchPad.c" \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/SSD1306.c" \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/Timer.c" \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/UART.c" \
-"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/inc/UARTbusywait.c" 
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/LaunchPad.c" \
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/SSD1306.c" \
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/Timer.c" \
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/UART.c" \
+"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/inc/UARTbusywait.c" 
 
 

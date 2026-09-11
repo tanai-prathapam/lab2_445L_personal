@@ -2,7 +2,9 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-CG_TOOL_ROOT := /Applications/ti/ccs2100/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS
+SHELL = cmd.exe
+
+CG_TOOL_ROOT := C:/ti/ccs2100/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -20,13 +22,13 @@ ORDERED_OBJS += \
 "./ticlang/startup_mspm0g3507_ticlang.o" \
 "../mspm0g3507.cmd" \
 $(GEN_CMDS__FLAG) \
--Wl,-l"/Applications/ti/mspm0_sdk_2_11_00_07/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+-Wl,-l"C:/ti/mspm0_sdk_2_10_00_04/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
 -Wl,-llibc.a \
 
 -include ../makefile.init
 
-RM := rm -rf
-RMDIR := rm -rf
+RM := DEL /F
+RMDIR := RMDIR /S/Q
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -137,15 +139,15 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Tool invocations
 ECE445L_Lab2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Arm Linker - building target: "$@"'
-	"/Applications/ti/ccs2100/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/bin/tiarmclang" -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -D__MSPM0G3507__ -gdwarf-3 -Wl,-m"ECE445L_Lab2.map" -Wl,--stack_size=512 -Wl,-i"/Users/harishthehershey/Desktop/HW/ECE 445L - TA/ValvanoWareMSPM0_v1/ECE445L_Lab2/Debug/syscfg" -Wl,-i"/Applications/ti/ccs2100/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="ECE445L_Lab2_linkInfo.xml" -Wl,--rom_model -o "ECE445L_Lab2.out" $(ORDERED_OBJS)
+	"C:/ti/ccs2100/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/bin/tiarmclang.exe" -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -D__MSPM0G3507__ -gdwarf-3 -Wl,-m"ECE445L_Lab2.map" -Wl,--stack_size=512 -Wl,-i"C:/Users/aleen/Documents/College/Fall2026/Embedded/ece445l_fall26_lab_2-team-08/sw/src/Debug/syscfg" -Wl,-i"C:/ti/ccs2100/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="ECE445L_Lab2_linkInfo.xml" -Wl,--rom_model -o "ECE445L_Lab2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ADC.o" "Clock.o" "I2C.o" "Lab2main.o" "LaunchPad.o" "SSD1306.o" "Timer.o" "UART.o" "UARTbusywait.o" "ticlang/startup_mspm0g3507_ticlang.o" 
-	-$(RM) "ADC.d" "Clock.d" "I2C.d" "Lab2main.d" "LaunchPad.d" "SSD1306.d" "Timer.d" "UART.d" "UARTbusywait.d" "ticlang/startup_mspm0g3507_ticlang.d" 
+	-$(RM) "ADC.o" "Clock.o" "I2C.o" "Lab2main.o" "LaunchPad.o" "SSD1306.o" "Timer.o" "UART.o" "UARTbusywait.o" "ticlang\startup_mspm0g3507_ticlang.o" 
+	-$(RM) "ADC.d" "Clock.d" "I2C.d" "Lab2main.d" "LaunchPad.d" "SSD1306.d" "Timer.d" "UART.d" "UARTbusywait.d" "ticlang\startup_mspm0g3507_ticlang.d" 
 	-@echo ' '
 
 .PHONY: all clean dependents

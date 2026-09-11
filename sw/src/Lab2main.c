@@ -24,16 +24,32 @@
 int32_t Averaging=0; // 0 to 6 to study CLT
 
 void ADC_Init5(void){ // initialize ADCO channel 5
-   // ****ECE445L write this ****
+  ADC0->ULLMEM.GPRCM.RSTCTL = 0xB1000003; // 1) reset ADC
+  ADC0->ULLMEM.GPRCM.PWREN = 0x26000001;  // 2) activate ADC
+  Clock_Delay(24);                        // 3) wait for ADC to settle
+  ADC0->ULLMEM.GPRCM.CLKCFG = 0xA9000000; // 4) ULPCLK connect to ADC
+  ADC0->ULLMEM.CLKFREQ = 7;               // 5) 40-48 MHz (speed of processor)
+  ADC0->ULLMEM.CTL0 = 0x03010000;         // 6) divide by 8 (speed at which ADC is clocked)
+  ADC0->ULLMEM.CTL1 = 0x00000000;         // 7) mode (no averaging, software trigger, and one sample)
+  ADC0->ULLMEM.CTL2 = 0x00000000;         // 8) MEMRES (put digital result here)
+  ADC0->ULLMEM.MEMCTL[0] = 5;             // 9) channel 5 is PB20
+  ADC0->ULLMEM.SCOMP0 = 0;                // 10) 8 sample clocks
+  ADC0->ULLMEM.CPU_INT.IMASK = 0;         // 11) no interrupt
 
 }
 int32_t ADC_In5(void){
-   // ****ECE445L write this ****
- return 42;
+  ADC0->ULLMEM.CTL0 |= 0x00000001;             // 1) enable conversions
+  ADC0->ULLMEM.CTL1 |= 0x00000100;             // 2) start ADC
+  uint32_t volatile delay=ADC0->ULLMEM.STATUS; // 3) time to let ADC start
+  while((ADC0->ULLMEM.STATUS&0x01)==0x01){}    // 4) wait for completion
+  return ADC0->ULLMEM.MEMRES[0];               // 5) 12-bit result
 }
-int32_t ADC_InAverage(void){
-   // ****ECE445L write this ****
-  return 42;
+int32_t ADC_InAverage(int samples){
+  uint32_t sum = 0;
+  for(int j=0; j<samples; j++){
+    sum += ADCin();
+  }
+  return sum/samples; // averaging
 }
 // debugging dump variables
 #define BUFSIZE 1000
@@ -59,7 +75,13 @@ void TIMG0_IRQHandler(void){
     int32_t ADCvalue;
     GPIOB->DOUTTGL31_0 = BLUE;  // profile PB22
     GPIOB->DOUTTGL31_0 = BLUE;  // profile PB22
-   // ****ECE445L write this ****
+    
+    if (Num < BUFSIZE) {
+        ADCvalue = ADC_In5();                   // 1. Sample the ADC
+        DataBuf[Num] = ADCvalue;                // 2. Store the digital sample
+        TimeBuf[Num] = TIMG12->COUNTERREGS.CTR; // 3. Record the exact 12.5ns timestamp
+        Num++;                                  // 4. Increment the array index
+    }
 
   }
   GPIOB->DOUTTGL31_0 = BLUE;  // profile PB22
