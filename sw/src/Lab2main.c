@@ -20,6 +20,7 @@
 #include "../inc/SSD1306.h"
 #include "../inc/Timer.h"
 #include "../inc/UART.h"
+#include <math.h>
 #define SSD1306 1
 int32_t Averaging=0; // 0 to 6 to study CLT
 
@@ -67,6 +68,7 @@ uint16_t Periods[MAXPERIOD];  // histogram of times between ADC triggers, option
 // SNR variables
 uint32_t Vmin, Vmax, PMFmax;
 int32_t Signal,Noise,SNR,Distance;
+uint32_t ENOB;
 uint16_t PMF[100];  // histogram of ADC samples
 
 // Samples ADC at 1000 Hz
@@ -90,11 +92,23 @@ void CalculateJitter(void){int i;
 // MaxT = maximum(Time[i-1] – Time[i]) for i equals 1 to 999
 // MinT = minimum(Time[i-1] – Time[i]) for i equals 1 to 999
 // Jitter = MaxT – MinT 
-   // ****ECE445L write this ****
+  MaxT = 0;
+  MinT = 0xFFFFFFFF;
 
-
-
+  // Loop from 1 to 999
+  uint32_t diff;
+  for(int i = 1; i < BUFSIZE; i++){
+    diff = TimeBuf[i-1] - TimeBuf[i];
+    if(diff > MaxT){ //max time diff
+      MaxT = diff;
+    }
+    if(diff < MinT){ //min time diff
+      MinT = diff;
+    }
+  }
+  Jitter = MaxT - MinT;
 }
+
 uint32_t sqrt2(uint32_t s){ int n; // loop counter
 uint32_t t;            // t*t will become s
   t = s/16+1;          // initial guess
@@ -108,8 +122,25 @@ void CalculateSNR(void){
   // signal is the average of BUFSIZE ADC samples
   // noise is the standard deviation of the BUFSIZE ADC samples
   // SNR = signal/noisem(no floating point allowed)
-   // ****ECE445L write this ****
-   
+  
+  // Signal: The average of your 1000 ADC samples.
+  for(i = 0; i < BUFSIZE; i++){
+    sum += DataBuf[i];
+  }
+  Signal = sum / BUFSIZE;
+
+  // Noise: The standard deviation of those 1000 samples.  
+  for(i = 0; i < BUFSIZE; i++){
+    diff = DataBuf[i] - Signal; // Distance from the mean
+    sum_sq += (diff * diff); // Square it and add to running total
+  }
+  Noise = sqrt2(sum_sq / (BUFSIZE - 1)); // Rest of formula for std dev
+  
+  // SNR (Signal-to-Noise Ratio): Calculated simply by dividing your Signal by your Noise.  
+  SNR = Signal / Noise;
+  
+  // ENOB (Effective Number of Bits): Calculated using the formula ENOB = log2(SNR).  
+  ENOB = 
    
 }
 void CreatePMF(void){
