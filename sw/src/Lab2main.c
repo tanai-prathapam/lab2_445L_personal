@@ -79,7 +79,7 @@ void TIMG0_IRQHandler(void){
     GPIOB->DOUTTGL31_0 = BLUE;  // profile PB22
     
     if (Num < BUFSIZE) {
-        ADCvalue = ADC_In5();                   // 1. Sample the ADC
+        ADCvalue = ADC_InAverage(1<<Averaging); // 1. Sample the ADC with each recorded sample being the average of 2^Averaging raw ADC conversion
         DataBuf[Num] = ADCvalue;                // 2. Store the digital sample
         TimeBuf[Num] = TIMG12->COUNTERREGS.CTR; // 3. Record the exact 12.5ns timestamp
         Num++;                                  // 4. Increment the array index
