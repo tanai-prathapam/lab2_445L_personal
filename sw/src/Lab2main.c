@@ -148,10 +148,24 @@ void CalculateSNR(void){
     diff = DataBuf[i] - Signal; // Distance from the mean
     sum_sq += (diff * diff); // Square it and add to running total
   }
-  Noise = sqrt2(sum_sq / (BUFSIZE - 1)); // Rest of formula for std dev
-  
+  //Noise = sqrt2(sum_sq / (BUFSIZE - 1)); // Rest of formula for std dev
+
+  // Calculate variance first
+  uint32_t variance = sum_sq / (BUFSIZE - 1); 
+
+  // Prevent sqrt2(0) crash
+  if (variance == 0) {
+    Noise = 0;
+  } else {
+    Noise = sqrt2(variance); 
+  }
+  if(Noise == 0){
+    SNR = Signal; 
+  } else {
+    SNR = Signal / Noise; // SNR (Signal-to-Noise Ratio): Calculated simply by dividing your Signal by your Noise.  
+  }
   // SNR (Signal-to-Noise Ratio): Calculated simply by dividing your Signal by your Noise.  
-  SNR = Signal / Noise;
+  //SNR = Signal / Noise;
   
   // ENOB (Effective Number of Bits): Calculated using the formula ENOB = log2(SNR).  
   ENOB = ilog2(SNR);
