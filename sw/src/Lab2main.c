@@ -48,7 +48,7 @@ int32_t ADC_In5(void){
 int32_t ADC_InAverage(int samples){
   uint32_t sum = 0;
   for(int j=0; j<samples; j++){
-    sum += ADCin();
+    sum += ADC_In5();
   }
   return sum/samples; // averaging
 }
@@ -124,13 +124,18 @@ void CalculateSNR(void){
   // SNR = signal/noisem(no floating point allowed)
   
   // Signal: The average of your 1000 ADC samples.
+  int32_t i; 
+  int32_t diff;
+  int32_t sum = 0;
+  int32_t sum_sq = 0;
+
   for(i = 0; i < BUFSIZE; i++){
     sum += DataBuf[i];
   }
   Signal = sum / BUFSIZE;
 
   // Noise: The standard deviation of those 1000 samples.  
-  for(i = 0; i < BUFSIZE; i++){
+  for(int i = 0; i < BUFSIZE; i++){
     diff = DataBuf[i] - Signal; // Distance from the mean
     sum_sq += (diff * diff); // Square it and add to running total
   }
@@ -140,7 +145,7 @@ void CalculateSNR(void){
   SNR = Signal / Noise;
   
   // ENOB (Effective Number of Bits): Calculated using the formula ENOB = log2(SNR).  
-  ENOB = 
+  ENOB = ilog2(SNR);
    
 }
 void CreatePMF(void){
