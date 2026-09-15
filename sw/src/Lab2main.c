@@ -118,6 +118,15 @@ uint32_t t;            // t*t will become s
   return t;
 }
 
+uint32_t ilog2(uint32_t n){
+  uint32_t result = 0;
+  while(n > 1){
+    n >>= 1;
+    result++;
+  }
+  return result;
+}
+
 void CalculateSNR(void){
   // signal is the average of BUFSIZE ADC samples
   // noise is the standard deviation of the BUFSIZE ADC samples
