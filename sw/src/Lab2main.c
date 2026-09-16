@@ -201,11 +201,13 @@ void CreatePMF(void){
   
 // d = A/(ADCvalue+B);
 // long range IR GP2Y0A21YK0F
+#define CAL_A  84866   // replace with your fitted A
+#define CAL_B  -1255      // replace with your fitted B (can be negative)
 
 int32_t IR_Convert(int32_t n){  // returns distance in mm
-   // ****ECE445L write this ****
-    return 42;
+    return CAL_A/(n + CAL_B);
 }
+
 
 
 // ----------------------------------------------------------------------
